@@ -1,0 +1,10 @@
+
+  221  sudo apt update
+  222  cat /etc/apt/sources.list\n
+  223  apt-cache search bashtop\n
+  224  apt list --all-versions bashtop\n
+  225  sudo apt install bashtop -y\n
+  226  bashtop\n
+  227  sudo apt purge bashtop -y\n
+  228  rm -rf ~/.config/bashtop
+  229  sudo apt autoremove -y\n

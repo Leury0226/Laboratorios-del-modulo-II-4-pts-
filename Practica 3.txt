@@ -1,0 +1,13 @@
+sudo fdisk -l
+sudo fdisk /dev/sdb
+sudo mkfs.ext4 /dev/sdb1
+mkdir -p ~/Escritorio/DiscoNuevo
+sudo mount /dev/sdb1 ~/Escritorio/DiscoNuevo
+cd ~/Escritorio/DiscoNuevo
+sudo touch AdrianAlcantara.txt
+ls 
+cd ~
+sudo umount ~/Escritorio/DiscoNuevo
+sudo mount /dev/sdb1 /mnt
+cd /mnt
+ls -l
