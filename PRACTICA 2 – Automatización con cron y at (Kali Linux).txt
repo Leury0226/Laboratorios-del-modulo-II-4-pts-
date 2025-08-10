@@ -1,0 +1,56 @@
+===========================================================
+PRACTICA 2 – Automatización con cron y at (Kali Linux)
+===========================================================
+
+# 1. Crear un trabajo cron que actualice el sistema todos los días a las 11 p.m.
+
+# Abrir el editor de crontab para el usuario root
+sudo crontab -e
+
+# Agregar la siguiente línea al final del archivo:
+# 0 23 * * * apt update -y && apt upgrade -y
+# Explicación:
+#   Minuto = 0
+#   Hora = 23 (11:00 PM)
+#   Día del mes = *
+#   Mes = *
+#   Día de la semana = *
+#   Acción = Actualizar lista de paquetes y aplicar actualizaciones
+
+# Guardar y salir (CTRL+O, Enter, CTRL+X)
+
+
+# 2. Programar el reinicio del sistema todos los domingos a las 3 a.m.
+
+# Editar el crontab de root
+sudo crontab -e
+
+# Agregar la línea:
+# 0 3 * * 0 /sbin/shutdown -r now
+# Explicación:
+#   Minuto = 0
+#   Hora = 3 (3:00 AM)
+#   Día del mes = *
+#   Mes = *
+#   Día de la semana = 0 (domingo)
+#   Acción = Reiniciar el sistema
+
+
+# 3. Crear tarea programada con "at" para eliminar /tmp en 1 minuto
+
+# Verificar que el servicio atd esté activo
+sudo systemctl enable --now atd
+
+# Mostrar el contenido actual de /tmp
+ls /tmp
+
+# Programar la tarea para que se ejecute en 1 minuto
+echo "rm -rf /tmp/*" | at now + 1 minute
+
+# Mostrar lista de tareas programadas con "at"
+atq
+
+# Esperar 1 minuto y luego mostrar el contenido de /tmp para verificar que se vació
+sleep 65
+ls /tmp
+
