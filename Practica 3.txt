@@ -1,13 +1,43 @@
-sudo fdisk -l
+===============================================================
+PRACTICA 3 – Manejo de discos y montaje en Linux (Kali Linux)
+===============================================================
+
+# 1. Verificar que el nuevo disco fue detectado (después de agregarlo en la VM y reiniciar)
+lsblk
+# Busca un disco nuevo (ejemplo: /dev/sdb) que no tenga particiones ni sistema de archivos.
+
+# 2. Crear una partición en el disco
 sudo fdisk /dev/sdb
+# Dentro de fdisk:
+#   n   (crear nueva partición)
+#   p   (partición primaria)
+#   1   (número de partición)
+#   Enter (primer sector por defecto)
+#   Enter (último sector por defecto para usar todo el disco)
+#   w   (guardar y salir)
+
+# 3. Formatear la partición en ext4
 sudo mkfs.ext4 /dev/sdb1
-mkdir -p ~/Escritorio/DiscoNuevo
-sudo mount /dev/sdb1 ~/Escritorio/DiscoNuevo
-cd ~/Escritorio/DiscoNuevo
-sudo touch AdrianAlcantara.txt
-ls 
+
+# 4. Crear carpeta en el escritorio para montar el disco
+mkdir -p ~/Escritorio/Disco20GB
+
+# 5. Montar el disco en la carpeta del escritorio
+sudo mount /dev/sdb1 ~/Escritorio/Disco20GB
+
+# 6. Entrar al directorio y crear un archivo llamado AdrianAlcantara.txt
+cd ~/Escritorio/Disco20GB
+echo "Este es el archivo de Adrian Alcantara" | sudo tee AdrianAlcantara.txt
+
+# 7. Desmontar la unidad
 cd ~
-sudo umount ~/Escritorio/DiscoNuevo
+sudo umount ~/Escritorio/Disco20GB
+
+# 8. Montar la unidad en /mnt
 sudo mount /dev/sdb1 /mnt
+
+# 9. Ingresar a /mnt y comprobar que el archivo sigue ahí
 cd /mnt
 ls -l
+cat AdrianAlcantara.txt
+ 
