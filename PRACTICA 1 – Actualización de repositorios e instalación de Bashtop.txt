@@ -1,0 +1,36 @@
+============================================================
+PRACTICA 1 – Actualización de repositorios e instalación de Bashtop
+Kali Linux / Debian
+============================================================
+
+1. Actualizar los repositorios y paquetes del sistema
+sudo apt update    # Actualiza la lista de paquetes disponibles desde los repositorios
+sudo apt upgrade -y    # Instala las actualizaciones de los paquetes ya instalados
+
+# 6. Enumerar los repositorios actualmente en uso
+cat /etc/apt/sources.list          # Muestra la lista principal de repositorios
+ls /etc/apt/sources.list.d/        # Muestra los archivos adicionales de repositorios (si existen)
+
+# 5. Buscar la herramienta "bashtop" en el caché de los repositorios
+apt search bashtop                 # Busca el paquete bashtop en los repositorios configurados
+
+# 4. Instalar "Bashtop Resource Monitor"
+sudo apt install bashtop -y      # Instala bashtop (si está disponible en los repositorios actuales)
+
+# 4.1 (Opcional) Si no está en los repositorios oficiales, agregarlo desde repositorio local/manual
+# Fuente: https://es.linux-console.net/?p=438#gsc.tab=0
+sudo add-apt-repository ppa:bashtop-monitor/bashtop  # Ejemplo de cómo agregar repositorios externos
+sudo apt update
+sudo apt install bashtop -y
+
+# 5. Ejecutar bashtop para presentarlo
+bashtop   # Muestra la interfaz interactiva de monitorización de recursos (CPU, RAM, procesos, etc.)
+
+# 6. Desinstalar bashtop eliminando archivos de configuración
+sudo apt purge bashtop -y          # Elimina el programa y sus archivos de configuración
+
+# 7. Eliminar todas las dependencias que ya no estén en uso
+sudo apt autoremove -y             # Limpia dependencias huérfanas
+
+
+
